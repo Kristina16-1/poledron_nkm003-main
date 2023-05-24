@@ -133,10 +133,7 @@ class Facet:
     # лежит ли центр внутри окружности?
     def right_cen(self):
         c = self.center()
-        if c.x ** 2 + c.y ** 2 <= 4:
-            return True
-        else:
-            return False
+        return c.x ** 2 + c.y ** 2 <= 4
 
     def area(self, k):
         c = self.center()
@@ -222,6 +219,6 @@ class Polyedr:
             for f in self.facets:
                 e.shadow(f)
         for f in self.facets:
-            if f.is_out_os_square() and f.is_invisible():
+            if f.right_cen() and f.is_invisible():
                 _part_area += f.area(self.c)
         return _part_area
